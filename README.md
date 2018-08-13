@@ -2,4 +2,5 @@
 微信点餐平台
 
 IDEA 
-MAVEN
+
+Maven
