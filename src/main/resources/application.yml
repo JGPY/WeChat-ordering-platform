@@ -1,0 +1,10 @@
+
+#logging.pattern.console="%d - %msg%n"
+##logging.path=C:\\logs
+#logging.file=C:\\logs\\sell.log
+##logging.pattern.level=debug
+#logging.pattern.level=vip.iotworld.main.LoggerTest:debug
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
