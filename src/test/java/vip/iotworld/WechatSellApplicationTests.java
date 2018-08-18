@@ -1,4 +1,4 @@
-package vip.iotworld.main;
+package vip.iotworld;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
