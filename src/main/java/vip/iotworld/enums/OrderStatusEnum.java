@@ -3,24 +3,24 @@ package vip.iotworld.enums;
 import lombok.Getter;
 
 /**
- *
- * 商品状态
  * Created with IDEA
  * author:LiuBing
- * Date:18/08/2018
- * Time:14:49
+ * Date:27/08/2018
+ * Time:09:17
  */
 @Getter
-public enum ProductStatusEnum {
+public enum OrderStatusEnum {
 
-    UP(0, "在架"),
-    DOWN(1, "下架");
+    NEW(0, "新订单") ,
+    FINISHED(1, "完结"),
+    CANCEl(2, "已取消"),
+    ;
 
     private  Integer code;
 
     private String message;
 
-    ProductStatusEnum(Integer code, String msssage){
+    OrderStatusEnum(Integer code, String msssage){
         this.code = code;
         this.message = msssage;
     }

@@ -1,0 +1,26 @@
+package vip.iotworld.enums;
+
+import lombok.Getter;
+
+/**
+ * Created with IDEA
+ * author:LiuBing
+ * Date:28/08/2018
+ * Time:08:46
+ */
+@Getter
+public enum ResultEnum {
+
+    PRODUCT_NOT_EXIST(10, "商品不存在"),
+    PRODUCT_STOCK_ERROR(11, "商品库存不正确"),
+    ;
+
+    private Integer code;
+
+    private String message;
+
+    ResultEnum(Integer code, String msssage){
+        this.code = code;
+        this.message = msssage;
+    }
+}
