@@ -7,9 +7,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 import vip.iotworld.dataobject.OrderDetail;
 import vip.iotworld.dto.OrderDTO;
+import vip.iotworld.enums.OrderStatusEnum;
+import vip.iotworld.enums.PayStatusEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,7 @@ public class OrderServiceImplTest {
     private OrderServiceImpl orderService;
 
     private final String BUYER_OPENID = "110110";
+    private final String ORDER_ID = "1535436808396762155";
 
     @Test
     public void create() {
@@ -65,21 +70,39 @@ public class OrderServiceImplTest {
 
     @Test
     public void findOne() {
+        //只取最新一个订单？
+        OrderDTO result = orderService.findOne(ORDER_ID);
+        log.info("【查询订单】 result={}"+result);
+//        Assert.assertNotNull(result);
+        Assert.assertEquals(ORDER_ID, result.getOrderId());
     }
 
     @Test
     public void findList() {
+        PageRequest pageRequest = new PageRequest(0,4);
+        Page<OrderDTO> result = orderService.findList(BUYER_OPENID,pageRequest);
+        log.info("【订单列表】 result={}"+result.getContent());
+        Assert.assertNotEquals(0, result.getTotalElements());
     }
 
     @Test
     public void cancel() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEl.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void paid() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.payid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
     }
 }

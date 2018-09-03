@@ -47,7 +47,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void increaseStock(List<CartDTO> cartDTOList) {
+
+        for ( CartDTO cartDTO: cartDTOList) {
+            ProductInfo productInfo =  repository.findById(cartDTO.getProductId()).get();
+            if (productInfo == null) {
+                throw new WechatException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+
+            Integer result = productInfo.getProductStock() + cartDTO.getProductQuantity();
+            productInfo.setProductStock(result);
+
+            repository.save(productInfo);
+        }
 
     }
 
@@ -61,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
                throw new WechatException(ResultEnum.PRODUCT_NOT_EXIST);
            }
 
-            Integer result = productInfo.getProductStock() - cartDTO.getProductQuantity();
+           Integer result = productInfo.getProductStock() - cartDTO.getProductQuantity();
            if(result < 0) {
                throw new WechatException(ResultEnum.PRODUCT_STOCK_ERROR);
            }

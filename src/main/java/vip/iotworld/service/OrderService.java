@@ -18,7 +18,7 @@ public interface OrderService {
     OrderDTO create(OrderDTO orderDTO);
 
     /** 查询单个订单. */
-    OrderDTO findOne(String OpenId);
+    OrderDTO findOne(String OrderId);
 
     /** 查询订单列表. */
     Page<OrderDTO> findList(String buyerOpenId, Pageable pageable);
@@ -30,6 +30,6 @@ public interface OrderService {
     OrderDTO finish(OrderDTO orderDTO);
 
     /** 支付订单. */
-    OrderDTO paid(OrderDTO orderDTO);
+    OrderDTO payid(OrderDTO orderDTO);
 
 }
