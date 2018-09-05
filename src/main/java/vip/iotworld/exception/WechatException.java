@@ -17,4 +17,10 @@ public class WechatException extends RuntimeException{
 
         this.code = resultEnum.getCode();
     }
+
+    public WechatException(Integer code,String message) {
+        super(message);
+        this.code = code;
+    }
+
 }
