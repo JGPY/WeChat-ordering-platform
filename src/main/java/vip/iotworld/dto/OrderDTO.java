@@ -1,12 +1,8 @@
 package vip.iotworld.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
-import org.springframework.transaction.annotation.Transactional;
 import vip.iotworld.dataobject.OrderDetail;
-import vip.iotworld.enums.OrderStatusEnum;
-import vip.iotworld.enums.PayStatusEnum;
 import vip.iotworld.utils.serializer.Date2LongSerializer;
 
 import javax.persistence.Id;

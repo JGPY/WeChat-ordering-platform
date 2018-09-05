@@ -14,8 +14,6 @@ import vip.iotworld.enums.ProductStatusEnum;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created with IDEA
  * author:LiuBing

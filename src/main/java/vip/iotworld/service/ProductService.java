@@ -1,6 +1,5 @@
 package vip.iotworld.service;
 
-import org.hibernate.validator.constraints.URL;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vip.iotworld.dataobject.ProductInfo;

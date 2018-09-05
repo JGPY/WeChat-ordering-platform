@@ -1,6 +1,5 @@
 package vip.iotworld.service.Impl;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,8 +16,6 @@ import vip.iotworld.enums.PayStatusEnum;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created with IDEA

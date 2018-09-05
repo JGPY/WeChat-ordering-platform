@@ -12,8 +12,6 @@ import vip.iotworld.dataobject.OrderMaster;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
-
 /**
  * Created with IDEA
  * author:LiuBing

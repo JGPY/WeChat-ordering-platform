@@ -11,8 +11,6 @@ import vip.iotworld.dataobject.ProductCategory;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created with IDEA
  * author:LiuBing
