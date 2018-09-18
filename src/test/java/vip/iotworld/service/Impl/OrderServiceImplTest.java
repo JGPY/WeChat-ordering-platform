@@ -32,7 +32,7 @@ public class OrderServiceImplTest {
     private OrderServiceImpl orderService;
 
     private final String BUYER_OPENID = "110110";
-    private final String ORDER_ID = "1535436808396762155";
+    private final String ORDER_ID = "1536026169055886243";
 
     @Test
     public void create() {
@@ -86,20 +86,32 @@ public class OrderServiceImplTest {
     public void cancel() {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.cancel(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.CANCEl.getCode(), result.getOrderStatus());
+//        Assert.assertEquals(OrderStatusEnum.CANCEl.getCode(), result.getOrderStatus());
+        Assert.assertTrue("取消订单", OrderStatusEnum.CANCEl.getCode() == result.getOrderStatus());
     }
 
     @Test
     public void finish() {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.finish(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
+//        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
+        Assert.assertTrue("完成订单", OrderStatusEnum.FINISHED.getCode() == result.getOrderStatus());
     }
 
     @Test
     public void paid() {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.payid(orderDTO);
-        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+//        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+        Assert.assertTrue("订单支付", PayStatusEnum.SUCCESS.getCode() == result.getPayStatus());
+    }
+
+    @Test
+    public void list() {
+//        QPageRequest qPageRequest = new QPageRequest(0, 2);
+        PageRequest pageRequest = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(pageRequest);
+//        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+        Assert.assertTrue("查询所有的订单列表", orderDTOPage.getTotalElements() > 0);
     }
 }

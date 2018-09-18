@@ -28,6 +28,7 @@ import vip.iotworld.utils.KeyUtil;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 /**
@@ -100,12 +101,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDTO findOne(String OrderId) {
-
-        OrderMaster orderMaster = orderMasterRepository.findById(OrderId).get();
-        if (orderMaster == null){
+    public OrderDTO findOne(String orderId) {
+        OrderMaster orderMaster;
+        try {
+            orderMaster = orderMasterRepository.findById(orderId).get();
+        }
+        catch (NoSuchElementException e){
             throw  new WechatException(ResultEnum.ORDER_NOT_EXIST);
         }
+
+//        OrderMaster orderMaster = orderMasterRepository.findOne(OrderId);
+//        if (orderMaster == null){
+//            throw  new WechatException(ResultEnum.ORDER_NOT_EXIST);
+//        }
 
         List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId(orderMaster.getOrderId());
         if (CollectionUtils.isEmpty(orderDetailList)) {
@@ -211,5 +219,14 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+        return new PageImpl<OrderDTO>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+
     }
 }

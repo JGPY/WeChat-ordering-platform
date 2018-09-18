@@ -1,8 +1,12 @@
 package vip.iotworld.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import vip.iotworld.dataobject.OrderDetail;
+import vip.iotworld.enums.OrderStatusEnum;
+import vip.iotworld.enums.PayStatusEnum;
+import vip.iotworld.utils.EnumUtil;
 import vip.iotworld.utils.serializer.Date2LongSerializer;
 
 import javax.persistence.Id;
@@ -56,4 +60,16 @@ public class OrderDTO {
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList = new ArrayList<>();
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+//        return OrderStatusEnum.getOrderStatusEnum(orderStatus);
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+//        return PayStatusEnum.getPayStatusEnum(orderStatus);
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 }

@@ -9,7 +9,7 @@ import lombok.Getter;
  * Time:09:45
  */
 @Getter
-public enum PayStatusEnum {
+public enum PayStatusEnum implements CodeEnum{
 
     WAIT(0, "等待支付"),
     SUCCESS(1, "支付成功"),
@@ -23,4 +23,13 @@ public enum PayStatusEnum {
         this.code = code;
         this.message = msssage;
     }
+
+//    public static PayStatusEnum getPayStatusEnum(Integer code) {
+//        for (PayStatusEnum payStatusEnum: PayStatusEnum.values()) {
+//            if (payStatusEnum.getCode().equals(code)) {
+//                return  payStatusEnum;
+//            }
+//        }
+//        return null;
+//    }
 }
